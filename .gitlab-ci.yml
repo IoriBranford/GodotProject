@@ -1,0 +1,46 @@
+image: ioribranford/godot-docker:latest
+
+stages:
+        - build
+
+.build:
+        <<: &build
+                stage: build
+                only:
+                        - master
+                script:
+                        - godot --export "${EXPORT}" "${CI_PROJECT_NAME}.${BINEXT}"
+                artifacts:
+                        name: "${CI_PROJECT_NAME}-${CI_COMMIT_REF_NAME}-${PLATFORM}"
+                        paths:
+                                - "${CI_PROJECT_NAME}.pck"
+                                - "${CI_PROJECT_NAME}.${BINEXT}"
+
+build:linux:
+        <<: *build
+        variables:
+                EXPORT: "Linux/X11"
+                BINEXT: "x86_64"
+                PLATFORM: "linux"
+
+build:windows:
+        <<: *build
+        variables:
+                EXPORT: "Windows Desktop"
+                BINEXT: "exe"
+                PLATFORM: "windows"
+
+build:macosx:
+        <<: *build
+        variables:
+                EXPORT: "Mac OSX"
+                BINEXT: "app"
+                PLATFORM: "macosx"
+        script:
+                - godot --export "${EXPORT}" a.zip # contains app "Game Name.app"
+                - unzip a.zip
+        artifacts:
+                name: "${CI_PROJECT_NAME}-${CI_COMMIT_REF_NAME}-${PLATFORM}"
+                paths:
+                        - "*.${BINEXT}"
+                          # pck is inside the app folder

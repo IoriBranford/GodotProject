@@ -1,6 +1,6 @@
 # Godot Sample Project
 
-Fork this project to start a new Godot game project.
+Fork this project to start a new Godot game with autobuilds via GitLab CI.
 
 Godot version: 3.0.6
 

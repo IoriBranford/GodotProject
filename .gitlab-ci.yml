@@ -6,10 +6,10 @@ stages:
 .build:
         <<: &build
                 stage: build
-                only:
-                        - master
                 script:
-                        - godot --export "${EXPORT}" "${CI_PROJECT_NAME}.${BINEXT}"
+                        - godot --export${DEBUG_OPTION} "${EXPORT}" "${CI_PROJECT_NAME}.${BINEXT}"
+                after_script:
+                        - find -name "*.${BINEXT}"
                 artifacts:
                         name: "${CI_PROJECT_NAME}-${CI_COMMIT_REF_NAME}-${PLATFORM}"
                         paths:
@@ -44,3 +44,18 @@ build:macosx:
                 paths:
                         - "*.${BINEXT}"
                           # pck is inside the app folder
+
+build:android:
+        <<: *build
+        image: ioribranford/godot-docker:android
+        variables:
+                EXPORT: "Android"
+                BINEXT: "apk"
+                PLATFORM: "android"
+                #DEBUG_OPTION: "-debug"
+        before_script:
+                - ./configure-android.sh
+        artifacts:
+                name: "${CI_PROJECT_NAME}-${CI_COMMIT_REF_NAME}-${PLATFORM}"
+                paths:
+                        - "*.${BINEXT}"

@@ -2,7 +2,7 @@
 
 Fork this project to start a new Godot game with autobuilds via GitLab CI.
 
-Godot version: 3.0.6
+Godot version: 3.1
 
 Platforms:
 
@@ -10,6 +10,10 @@ Platforms:
 - Mac OSX
 - Linux X11
 - Android
+
+## Windows icon
+
+1. Generate an .ico file to replace icon.ico, using a tool such as https://icoconvert.com/
 
 ## Android release signing
 

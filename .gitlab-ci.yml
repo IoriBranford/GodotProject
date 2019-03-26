@@ -1,4 +1,4 @@
-image: ioribranford/godot-docker:3.0.6
+image: ioribranford/godot-docker:3.1
 
 stages:
         - build
@@ -27,7 +27,7 @@ build:linux:
 
 build:windows:
         <<: *build
-        image: ioribranford/godot-docker:windows
+        image: ioribranford/godot-docker:3.1-windows
         variables:
                 EXPORT: "Windows Desktop"
                 BINEXT: "exe"
@@ -50,7 +50,7 @@ build:macosx:
 
 build:android:
         <<: *build
-        image: ioribranford/godot-docker:android
+        image: ioribranford/godot-docker:3.1-android
         variables:
                 EXPORT: "Android"
                 BINEXT: "apk"

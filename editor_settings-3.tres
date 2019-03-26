@@ -182,6 +182,7 @@ export/uwp/debug_certificate = ""
 export/uwp/debug_password = ""
 export/uwp/debug_algorithm = 2
 export/windows/rcedit = ""
+export/windows/wine = ""
 text_editor/help/help_title_font_size = 23
 text_editor/help/help_font_size = 15
 text_editor/help/help_source_font_size = 14

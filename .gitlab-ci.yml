@@ -1,4 +1,4 @@
-image: ioribranford/godot-docker:latest
+image: ioribranford/godot-docker:3.0.6
 
 stages:
         - build
@@ -6,6 +6,8 @@ stages:
 .build:
         <<: &build
                 stage: build
+                before_script:
+                        - ./configure.sh
                 script:
                         - godot --export${DEBUG_OPTION} "${EXPORT}" "${CI_PROJECT_NAME}.${BINEXT}"
                 after_script:
@@ -25,6 +27,7 @@ build:linux:
 
 build:windows:
         <<: *build
+        image: ioribranford/godot-docker:windows
         variables:
                 EXPORT: "Windows Desktop"
                 BINEXT: "exe"
@@ -53,8 +56,6 @@ build:android:
                 BINEXT: "apk"
                 PLATFORM: "android"
                 #DEBUG_OPTION: "-debug"
-        before_script:
-                - ./configure-android.sh
         artifacts:
                 name: "${CI_PROJECT_NAME}-${CI_COMMIT_REF_NAME}-${PLATFORM}"
                 paths:

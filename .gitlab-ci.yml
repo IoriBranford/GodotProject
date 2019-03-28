@@ -39,9 +39,10 @@ build:macosx:
                 EXPORT: "Mac OSX"
                 BINEXT: "app"
                 PLATFORM: "macosx"
-        script:
-                - godot --export "${EXPORT}" a.zip # contains app "Game Name.app"
-                - unzip a.zip
+        after_script:
+                - mv "${CI_PROJECT_NAME}.${BINEXT}" app.zip # actually zip containing app
+                - unzip app.zip
+                - find -name "*.${BINEXT}"
         artifacts:
                 name: "${CI_PROJECT_NAME}-${CI_COMMIT_REF_NAME}-${PLATFORM}"
                 paths:

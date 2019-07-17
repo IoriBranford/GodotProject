@@ -27,7 +27,7 @@ build:linux:
 
 build:windows:
         <<: *build
-        image: ioribranford/godot-docker:3.1-windows
+        image: ioribranford/godot-docker:3.1.1-windows
         variables:
                 EXPORT: "Windows Desktop"
                 BINEXT: "exe"
@@ -51,7 +51,7 @@ build:macosx:
 
 build:android:
         <<: *build
-        image: ioribranford/godot-docker:3.1-android
+        image: ioribranford/godot-docker:3.1.1-android
         variables:
                 EXPORT: "Android"
                 BINEXT: "apk"

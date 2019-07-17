@@ -2,7 +2,7 @@
 
 Fork this project to start a new Godot game with autobuilds via GitLab CI.
 
-Godot version: 3.1
+Godot version: 3.1.1
 
 Platforms:
 

@@ -9,7 +9,7 @@ stages:
                 before_script:
                         - ./configure.sh
                 script:
-                        - godot --export${DEBUG_OPTION} "${EXPORT}" "${CI_PROJECT_NAME}.${BINEXT}"
+                        - godot --export${DEBUG_OPTION} "${EXPORT}" "${BINNAME}.${BINEXT}"
                 after_script:
                         - find -name "*.${BINEXT}"
                 artifacts:
@@ -22,6 +22,7 @@ build:linux:
         <<: *build
         variables:
                 EXPORT: "Linux/X11"
+                BINNAME: "${CI_PROJECT_NAME}"
                 BINEXT: "x86_64"
                 PLATFORM: "linux"
 
@@ -30,6 +31,7 @@ build:windows:
         image: ioribranford/godot-docker:3.1.1-windows
         variables:
                 EXPORT: "Windows Desktop"
+                BINNAME: "${CI_PROJECT_NAME}"
                 BINEXT: "exe"
                 PLATFORM: "windows"
 
@@ -37,6 +39,7 @@ build:macosx:
         <<: *build
         variables:
                 EXPORT: "Mac OSX"
+                BINNAME: "${CI_PROJECT_NAME}"
                 BINEXT: "app"
                 PLATFORM: "macosx"
         after_script:
@@ -54,6 +57,7 @@ build:android:
         image: ioribranford/godot-docker:3.1.1-android
         variables:
                 EXPORT: "Android"
+                BINNAME: "${CI_PROJECT_NAME}"
                 BINEXT: "apk"
                 PLATFORM: "android"
                 #DEBUG_OPTION: "-debug"
@@ -61,3 +65,15 @@ build:android:
                 name: "${CI_PROJECT_NAME}-${CI_COMMIT_REF_NAME}-${PLATFORM}"
                 paths:
                         - "*.${BINEXT}"
+
+pages:
+        <<: *build
+        variables:
+                EXPORT: "HTML5"
+                BINNAME: "public/index"
+                BINEXT: "html"
+                PLATFORM: "html5"
+        artifacts:
+                name: "${CI_PROJECT_NAME}-${CI_COMMIT_REF_NAME}-${PLATFORM}"
+                paths:
+                        - "public"

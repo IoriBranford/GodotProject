@@ -10,6 +10,7 @@ Platforms:
 - Mac OSX
 - Linux X11
 - Android
+- HTML5
 
 ## Windows icon
 
@@ -24,3 +25,9 @@ keytool -genkey -v -keystore release.keystore -keyalg RSA -keysize 2048 -validit
 > This example prompts you for passwords for the keystore and key, and to provide the Distinguished Name fields for your key. It then generates the keystore as a file...saving it in the current directory (you can move it wherever you'd like). The keystore contains a single key that is valid for 10,000 days.
 
 2. In your project page Settings > CI/CD > Variables, add the variables `KEYSTORE_USERNAME` and `KEYSTORE_PASSWORD`. Set them to your keystore's alias and password.
+
+## HTML5 hosting
+
+The web build will be automatically published to a GitLab Page: https://yourname.gitlab.io/yourgodotproject/
+
+Or you can download the "pages" job artifacts and host them wherever.

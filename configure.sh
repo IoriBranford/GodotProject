@@ -22,3 +22,5 @@ set_property editor_settings-3.tres export/windows/rcedit $(which rcedit-x64.exe
 set_property editor_settings-3.tres export/windows/wine $(which wine)
 set_property editor_settings-3.tres export/android/adb $(which adb)
 set_property editor_settings-3.tres export/android/jarsigner $(which jarsigner)
+
+cp editor_settings-3.tres ~/.config/godot/

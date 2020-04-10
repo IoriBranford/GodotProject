@@ -1,4 +1,4 @@
-image: ioribranford/godot-docker:3.1.2
+image: ioribranford/godot-docker:3.2.1
 
 stages:
         - build
@@ -28,7 +28,7 @@ build:linux:
 
 build:windows:
         <<: *build
-        image: ioribranford/godot-docker:3.1.2-windows
+        image: ioribranford/godot-docker:3.2.1-windows
         variables:
                 EXPORT: "Windows Desktop"
                 BINNAME: "${CI_PROJECT_NAME}"
@@ -54,7 +54,7 @@ build:macosx:
 
 build:android:
         <<: *build
-        image: ioribranford/godot-docker:3.1.2-android
+        image: ioribranford/godot-docker:3.2.1-android
         variables:
                 EXPORT: "Android"
                 BINNAME: "${CI_PROJECT_NAME}"

@@ -3,6 +3,9 @@ image: ioribranford/godot-docker:3.2.3
 stages:
         - build
 
+rules:
+        - if: '$CI_PIPELINE_SOURCE == "web" || $CI_COMMIT_TAG != null'
+
 .build:
         <<: &build
                 stage: build
